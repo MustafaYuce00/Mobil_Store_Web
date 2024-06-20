@@ -61,83 +61,85 @@ List<Map<String, String>> paketler = [
 ];
 
 allPaket(context) {
-  return CarouselSlider(
-      options: CarouselOptions(
-          height: MediaQuery.of(context).size.height * 0.8,
-          autoPlay: true,
-          autoPlayInterval: Duration(seconds: 3)),
-      items: paketler.map((i) {
-        return Builder(
-          builder: (BuildContext context) {
-            return Container(
-              width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.symmetric(horizontal: 5.0),
-              decoration: BoxDecoration(
-               //   color: Colors.blueGrey[100],
-                  borderRadius: BorderRadius.circular(20),
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: List.generate(2, (index) => Color.fromARGB(255, 217, 207, 220)),
-                  )),
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: Text(
-                      '${i['baslik']}',
-                      style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.03),
-                    ),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    height: MediaQuery.of(context).size.height * 0.4,
-                    child: Image.asset(
-                      i['img'].toString(),
-                    ),
-                  ),
-               /*   Expanded(
-                    child: Image.asset(
-                      i['img'].toString(),
-                    ),
-                  ),*/
-                  Padding(
-                    padding: EdgeInsets.all(
-                        MediaQuery.of(context).size.width * 0.01),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      height: MediaQuery.of(context).size.height * 0.2,
+  print(MediaQuery.of(context).size.width.toString() + "asdasdaaaaaaaaaaaaaaa");
+  return Container(
+    width: MediaQuery.of(context).size.width * 0.8,
+    child: CarouselSlider(
+        options: CarouselOptions(
+            height: MediaQuery.of(context).size.width * 0.5,
+            autoPlay: true,
+            autoPlayInterval: Duration(seconds: 3)),
+        items: paketler.map((i) {
+          return Builder(
+            builder: (BuildContext context) {
+              return Container(
+                width: MediaQuery.of(context).size.width,
+                margin: EdgeInsets.symmetric(horizontal: 5.0),
+                decoration: BoxDecoration(
+                    //   color: Colors.blueGrey[100],
+                    borderRadius: BorderRadius.circular(20),
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: List.generate(
+                          2, (index) => Color.fromARGB(255, 217, 207, 220)),
+                    )),
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.topCenter,
                       child: Text(
-                        i['icerik'].toString(),
+                        '${i['baslik']}',
                         style: TextStyle(
-                          fontSize:16,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        maxLines: 7,
+                            fontSize: MediaQuery.of(context).size.width * 0.03),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(
-                        MediaQuery.of(context).size.width * 0.02),
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        child: Text("Detaylı Bilgi Al"),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blueGrey[300],
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                    MediaQuery.of(context).size.width >= 600
+                        ? Expanded(
+                            child: Image.asset(
+                              i['img'].toString(),
+                              fit: BoxFit.fitWidth,
+                            ),
+                          )
+                        : Container(),
+                    Padding(
+                      padding: EdgeInsets.all(
+                          MediaQuery.of(context).size.width * 0.01),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        height: MediaQuery.of(context).size.height * 0.15,
+                        child: Text(
+                          i['icerik'].toString(),
+                          style: TextStyle(
+                            fontSize: 16,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          maxLines: 7,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(
+                          MediaQuery.of(context).size.width * 0.02),
+                      child: Align(
+                        alignment: Alignment.bottomRight,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: Text("Detaylı Bilgi Al"),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blueGrey[300],
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            );
-          },
-        );
-      }).toList());
+                  ],
+                ),
+              );
+            },
+          );
+        }).toList()),
+  );
 }

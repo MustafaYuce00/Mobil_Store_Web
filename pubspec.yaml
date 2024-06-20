@@ -16,6 +16,7 @@ dependencies:
   flutter_image_slideshow: ^0.1.6
   firebase_core: ^2.24.2
   carousel_slider: ^4.2.1
+  ionicons: ^0.2.2
 
 dev_dependencies:
   flutter_test:
